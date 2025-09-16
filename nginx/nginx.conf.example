@@ -35,7 +35,7 @@ http {
     server {
         listen       8080;
         server_name  localhost;
-	root /opt/homebrew/var/www/tasks/dist;
+	root /opt/homebrew/var/www/tasks/backend;
 	index index.php index.html;
 
         #charset koi8-r;
@@ -43,10 +43,20 @@ http {
         #access_log  logs/host.access.log  main;
 
         location / {
-#            root   html;
-#            index  index.html index.htm;
-	  try_files $uri $uri/ /index.php?$query_string;
+          #root   html;
+          #index  index.html index.htm;
+	        try_files $uri $uri/ /index.php?$query_string;
         }
+        #location /frontend/dist/ {
+        #  alias /opt/homebrew/var/www/tasks/frontend/dist/;
+        #  try_files $uri $uri/ =404;
+        #}
+
+        #location /assets/ {
+        #  alias /opt/homebrew/var/www/tasks/frontend/dist/assets/;
+        #  try_files $uri $uri/ =404;
+        #}
+
 
         #error_page  404              /404.html;
 
@@ -66,11 +76,12 @@ http {
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
         location ~ \.php$ {
-#            root           html;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-            include        fastcgi_params;
+          #root           html;
+          #            fastcgi_pass   127.0.0.1:9000;
+          include fastcgi_params;
+          fastcgi_pass unix:/opt/homebrew/var/run/php-fpm.sock; 
+          fastcgi_index  index.php;
+          fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         }
 
         # deny access to .htaccess files, if Apache's document root
