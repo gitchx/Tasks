@@ -11,7 +11,7 @@ export default defineConfig(({ command }) => ({
   ],
   build: {
     manifest: true,
-    outDir: '../backend/dist',
+    outDir: '../backend/tasks/dist',
   },
   base: command === 'serve' ? '' : '/dist/',
   resolve: {
@@ -22,6 +22,6 @@ export default defineConfig(({ command }) => ({
   server: {
   host: true,
   port: 5173,
-  allowedHosts: 'all'
+  allowedHosts: true
 }
 }))

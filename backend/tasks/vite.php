@@ -17,10 +17,10 @@ function vite($entry) {
     // CSS
     if (isset($entryData['css'])) {
         foreach ($entryData['css'] as $css) {
-            echo '<link rel="stylesheet" href="/dist/' . $css . '">' . PHP_EOL;
+            echo '<link rel="stylesheet" href="dist/' . $css . '">' . PHP_EOL;
         }
     }
 
     // JS
-    echo '<script type="module" src="/dist/' . $entryData['file'] . '"></script>' . PHP_EOL;
+    echo '<script type="module" src="dist/' . $entryData['file'] . '"></script>' . PHP_EOL;
 }
